@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrzeBoljeJeftinije.Messenger.UI", "BrzeBoljeJeftinije.Messenger.UI\BrzeBoljeJeftinije.Messenger.UI.csproj", "{9FC00E44-8819-4976-9543-8B71AC0186FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrzeBoljeJeftinije.Messenger.DB", "BrzeBoljeJeftinije.Messenger.DB\BrzeBoljeJeftinije.Messenger.DB.csproj", "{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardCrypto", "CardCrypto\CardCrypto.csproj", "{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RSIDCrypto", "RSIDCrypto\RSIDCrypto.vdproj", "{1FE1D320-1210-4EF0-8022-3CFFEBDEE08A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug2|Any CPU = Debug2|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC00E44-8819-4976-9543-8B71AC0186FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4A2B29-54E1-49E2-9C83-FA719544A8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA2AD70-D58D-45E9-AC18-18D9F58BE531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE1D320-1210-4EF0-8022-3CFFEBDEE08A}.Debug|Any CPU.ActiveCfg = Debug
+		{1FE1D320-1210-4EF0-8022-3CFFEBDEE08A}.Debug2|Any CPU.ActiveCfg = Debug
+		{1FE1D320-1210-4EF0-8022-3CFFEBDEE08A}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37327A70-D30B-408E-9CA6-907B54F3288F}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://pn150121d.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BrzeBoljeJeftinije.Messenger.UI\\BrzeBoljeJeftinije.Messenger.UI.csproj
+		SccProjectName1 = BrzeBoljeJeftinije.Messenger.UI
+		SccLocalPath1 = BrzeBoljeJeftinije.Messenger.UI
+		SccProjectUniqueName2 = BrzeBoljeJeftinije.Messenger.DB\\BrzeBoljeJeftinije.Messenger.DB.csproj
+		SccProjectName2 = BrzeBoljeJeftinije.Messenger.DB
+		SccLocalPath2 = BrzeBoljeJeftinije.Messenger.DB
+		SccProjectUniqueName3 = CardCrypto\\CardCrypto.csproj
+		SccProjectName3 = CardCrypto
+		SccLocalPath3 = CardCrypto
+		SccProjectUniqueName4 = RSIDCrypto\\RSIDCrypto.vdproj
+		SccProjectName4 = RSIDCrypto
+		SccLocalPath4 = RSIDCrypto
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,123 @@
+﻿@using BrzeBoljeJeftinije.Messenger.UI.Helpers;
+@{
+    var currentController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    var currentAction = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>
+        Hello Messenger
+    </title>
+    @Styles.Render("~/Content/bundled_css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/signalR")
+    @Scripts.Render("~/bundles/cardreader")
+    @Scripts.Render("~/bundles/js")
+    <script src="signalr/hubs"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+    <script>
+        var sessionId = "@HttpContext.Current.Session.SessionID";
+    </script>
+    <div class="modal" id="message-box-modal">
+        <div class="modal-inner modal-inner-smaller modal-inner-noscroll">
+            <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+            <h2 class="info-part">OBAVEŠTENJE</h2>
+            <h2 class="alert-part">UPOZORENJE</h2>
+            <div style="text-align:center;" class="alert-part"><i class="fa fa-warning fa-4x" style="color:red" aria-hidden="true"></i></div>
+            <div style="text-align:center;" class="info-part"><i class="fa fa-info-circle fa-4x" style="color:blue" aria-hidden="true"></i></div>
+            <div class="message-box-text" style="text-align:center"></div>
+            <input type="button" class="form-control" value="Nastavi" onclick="closeModal()" />
+        </div>
+    </div>
+    <div class="modal" id="prompt-modal">
+        <div class="modal-inner modal-inner-smaller modal-inner-noscroll">
+            <div style="text-align:center;"><i class="fa fa-question-circle fa-4x" aria-hidden="true"></i></div>
+            <div class="message-box-text" style="text-align:center"></div>
+            <input type="button" class="form-control" style="width:50%;float:left" value="Odustani" onclick="promptReject()" />
+            <input type="button" class="form-control" style="width:50%;float:right" value="Nastavi" onclick="promptAccept()" />
+        </div>
+    </div>
+    <div class="modal" id="generic-modal">
+        <div class="modal-inner">
+            <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+            <div class="generic-content"></div>
+        </div>
+    </div>
+    <nav id="nav-menu-open">
+        <div class="w3-top" ; style="text-align:center;overflow-x:hidden">
+            <a href="#" onclick="openNavMenu()"><i id="open-nav-button" class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
+        </div>
+    </nav>
+    <nav id="nav-menu">
+        <div class="w3-top">
+            <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+                @if (currentController == "Messages")
+                {
+                    <a href="@Url.Action("Index","Messages")" class="w3-bar-item w3-button">PORUKE</a>
+                    <a href="#" onclick="showModal('#friendsearch')" class="w3-bar-item w3-button">DODAJ PRIJATELJE</a>
+                    <a href="@Url.Action("Index","Settings")" class="w3-bar-item w3-button">PODEŠAVANJA</a>
+                }
+                else if (currentController == "Settings")
+                {
+                    <a href="@Url.Action("Index","Messages")" class="w3-bar-item w3-button">PORUKE</a>
+                }
+                else if (currentController == "Home")
+                {
+                    <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">POČETAK</a>
+                    <a href="#manual" class="w3-bar-item w3-button">UPUTSTVO</a>
+                    <a href="#team" class="w3-bar-item w3-button">TIM</a>
+                    <a href="#googleMap" class="w3-bar-item w3-button">KONTAKT</a>
+                    <a href="@Url.Action("Login", "Admin")" class="w3-bar-item w3-button">ADMINISTRACIJA</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">POČETAK</a>
+                    if (currentAction == "Index")
+                    {
+                        <a href="javascript:registerNewAdmin()" class="w3-bar-item w3-button">REGISTRUJ NOVOG ADMINISTRATORA</a>
+                        <a href="javascript:showModal('#set-my-password')" class="w3-bar-item w3-button">PROMENI LOZINKU</a>
+                        <a href="@Url.Action("Logout","Admin")" class="w3-bar-item w3-button">ODJAVI SE</a>
+                    }
+                }
+                @if (SessionData.User != null)
+                {
+                    <a href="@Url.Action("Logout","Auth")" class="w3-bar-item w3-button">ODJAVI SE</a>
+                    <div class="profile-info">
+                        <img id="menu-profile-pic" src="@Url.Action("MyPicture", "User", new { rand=DateTime.Now.ToString() })" alt="Person" width="96" height="96">
+                        @SessionData.User.Name
+                    </div>
+                }
+            </div>
+        </div>
+    </nav>
+    @if (currentController != "Home")
+    {
+        <div class="root-div">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            $(document).ready(() => {
+                showAlertBox("@TempData["ErrorMessage"]");
+            });
+        </script>
+    }
+</body>
+</html>

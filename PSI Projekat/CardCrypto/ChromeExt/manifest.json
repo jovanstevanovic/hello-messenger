@@ -1,0 +1,24 @@
+﻿{
+  "manifest_version": 2,
+  "name": "brzeboljejeftinije.messenger.cardreader",
+  "version": "1.0.1",
+  "description": "University experiment, an extension for cryptographic operations with serbian ID cards",
+  "icons": {
+    "48": "icons/icon48.png",
+    "32": "icons/icon32.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [ "http://*/*", "https://*/*", "file://*/*" ],
+      "js": [ "scripts/content.js" ]
+    }
+  ],
+  "background": {
+    "scripts": [ "scripts/background.js" ],
+    "persistent": false
+  },
+  "permissions": [
+    "nativeMessaging"
+  ]
+}

@@ -1,0 +1,415 @@
+﻿.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url("Content/img/pozadina.jpg");
+    min-height: 100%;
+}
+
+.w3-bar .w3-button {
+    padding: 16px;
+}
+
+body, html {
+    height: 100%
+}
+
+nav a, h1, h2, h3, h4, h5, h6 {
+    font-family: "Amatic SC", sans-serif;
+    font-size: 25px;
+}
+
+.menu {
+    display: none
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 23%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+.root-div {
+    padding-top: 70px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 1.0em;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+    width: 95%;
+    font-family: Arial;
+    white-space: nowrap;
+}
+
+    .chip img {
+        float: left;
+        margin: 0 10px 0 -25px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+
+#groups {
+    width: 20%;
+    overflow: hidden;
+    height: 100%;
+    max-height: 100%;
+    float: left;
+    position: relative;
+    padding-top: 8px;
+}
+
+    #groups > ul {
+        list-style-type: none;
+        padding-left:0;
+        -webkit-padding-start: 0px;
+    }
+
+#message-content {
+    width: 80%;
+    overflow-y: hidden;
+    height: 100%;
+    max-height: 100%;
+    float: right;
+}
+
+.reply-send {
+    float: right;
+}
+
+.reply-main {
+    width: 80%
+}
+
+.profile-info {
+    display: inline-block;
+    padding-left: 50px;
+    padding-top: 10px;
+    height: 50px;
+    font-size: 0.8em;
+    line-height: 50px;
+    border-radius: 25px;
+    margin-bottom: 20px
+}
+
+    .profile-info img {
+        float: left;
+        margin: 0 10px 0 -25px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+#group-search {
+    font-size: 0.8em;
+    font-family: Arial;
+    width: 95%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius:25px;
+}
+
+#group-search-div {
+    height: 40px
+}
+
+#group-search-div .search-icon {
+    position: absolute;
+    right: 0;
+    top: 10px !important;
+    padding-right: 16px;
+    top: 0;
+    z-index: 5
+}
+
+.message-img {
+    float: left;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.sent-img {
+    max-width: 300px
+}
+
+#sent-text {
+    font-family: Arial
+}
+
+.modal-inner {
+    width: 33%;
+    height: 90%;
+    opacity: 1;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    overflow-y: scroll;
+    padding: 10px;
+    font-family:Arial;
+}
+.modal-inner h1,h2,h3,h4,h5,h6 {
+    font-family: Arial;
+    text-align:center
+}
+.modal-inner-noscroll{
+    overflow-y:hidden;
+}
+
+@media screen and (max-width: 800px) {
+    .modal-inner{
+        width:90%
+    }
+    #group-search-div .search-icon {
+        display: none
+    }
+}
+@media screen and (max-width: 500px) {
+    #groups .chiptext {
+        display: none
+    }
+    #groups .chip {
+        background-color: white;
+    }
+    #groups {
+        width: 64px;
+    }
+    #message-content {
+        left:75px;
+        right:-10px;
+        position:absolute
+    }
+    .w3-top{
+        overflow-x:scroll
+    }
+    .w3-bar{
+        width:200%
+    }
+}
+@media screen and (max-width: 640px) {
+    .profile-info{
+        display:none
+    }
+}
+
+#friend-search {
+    font-size: 0.8em;
+    width: 95%;
+    font-family: Arial;
+    display: block;
+    margin: 0 auto
+}
+.modal-inner input[type='text'] {
+    font-size: 0.8em;
+    width: 100%;
+    font-family: Arial;
+    display: block;
+    margin: 0,5%,10px,5%;
+}
+input[type='text'] {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.modal-inner ul {
+    margin-top: 16px
+}
+.modal-inner li {
+    list-style-type: none
+}
+.modal-inner .fa-file-picture-o{
+    margin-top:10px
+}
+
+#group-edit-name{
+    font-size: 0.8em;
+    width: 85%;
+    display: block;
+    font-family: Arial;
+    margin: 0,5%,10px,5%;
+    float: left
+}
+
+.profile-info {
+    float: right;
+    padding-right: 10px;
+}
+#nav-menu-open{
+    display:none;
+}
+#open-nav-button {
+    font-weight: bold;
+    color: white;
+    opacity: 0.5;
+}
+#admin-login-form{
+    width:50%;
+    margin:auto;
+}
+.ellip {
+    display: block;
+    height: 100%;
+}
+
+.ellip-line {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    max-width: 100%;
+}
+
+.ellip,
+.ellip-line {
+    position: relative;
+    overflow: hidden;
+}
+#user-list{
+    width:100%
+}
+.user-list-image {
+    float:right;
+    height: 72px;
+    width: 72px;
+}
+.fa-2x{
+    font-size:4em;
+}
+.fa-send{
+    font-size:4em;
+}
+.modal-inner-smaller{
+    height:auto;
+}
+.message-box-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align:center;
+}
+.chip.selected-chip{
+    font-weight:bold;
+    background:#a0a0a0;
+}
+.chip.unread-chip{
+    font-weight:bold
+}

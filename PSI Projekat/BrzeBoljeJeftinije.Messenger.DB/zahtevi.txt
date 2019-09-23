@@ -1,0 +1,11 @@
+﻿Potrebni entiteti:
+	- User (ID, name, cert_hash(string, unique), certificate(binary), picture(binary), pictureType(string))
+	- Message (ID, text(string), Grouop_ID, Sender_ID, TimeStamp(Date time))
+	- Group (ID, name, timestamp)
+	- message_crypto_material(ID, Message_ID, User_ID, material(string, dugacak)) //ovo je za moju kriptografiju
+	- Attachment(ID, Message_ID, File_Name, file_extension(string), content(binary))
+	- FriendRequest(Sender_ID, Receiver_ID, resolved, seen, TimeStamp(Date time))
+
+	- veza: Group_Member(Group_ID, User_ID, is_admin)
+	- veza: Procitao_poruku(User_ID, Message_ID)
+	- veza: Friendship(User1, User2)

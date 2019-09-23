@@ -1,0 +1,49 @@
+﻿@Scripts.Render("~/bundles/admin")
+<h2>Upravljanje korisnicima</h2>
+<script>
+    
+</script>
+<div class="modal" id="confirm-delete">
+    <div class="modal-inner modal-inner-noscroll">
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <h2>BRISANJE NALOGA</h2>
+        <div>Ako potvrdite brisanje, biće obrisan nalog kao i sve poruke koje je poslao. Da li želite da nastavite sa brisanjem</div>
+        <a href="#" onclick="confirmDelete()"><div style="text-align:center"><i class="fa fa-close" aria-hidden="true"><span style="font-family:Arial">NASTAVI</span></i></div></a>
+        <ul id="friend-list"></ul>
+    </div>
+</div>
+<div class="modal" id="register-new-admin">
+    <div class="modal-inner modal-inner-smaller modal-inner-noscroll">
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <h2>REGISTRACIJA NOVOG ADMINISTRATORA</h2>
+        <input class="form-control" type="text" placeholder="Korisničko ime" id="new-admin-name" />
+        <input class="form-control" type="password" placeholder="Lozinka" id="new-admin-password" />
+        <input class="form-control" type="password" placeholder="Potvrdite lozinku" id="new-admin-password-confirm" />
+        <input class="form-control" type="button" value="Registruj" onclick="confirmAdminRegister()" />
+    </div>
+</div>
+<div class="modal" id="set-my-password">
+    <div class="modal-inner modal-inner-smaller modal-inner-noscroll">
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <h2>PROMENA LOZINKE</h2>
+        <input class="form-control" type="password" placeholder="Nova lozinka" id="new-password"/>
+        <input class="form-control" type="password" placeholder="Ponovite lozinku" id="new-password-confirm" />
+        <input class="form-control" type="button" value="Promeni" onclick="setNewPassword()" />
+    </div>
+</div>
+<div id="search-div"><input type="text" class="form-control" id="user-search" onkeyup="searchUsers(event)" placeholder="Unesite ime korisnika kojeg tražite"/></div>
+<div id="search-list-div">
+    <table id="user-list" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Korisnik</th>
+                <th>Status</th>
+                <th>Do</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="user-list-body">
+        </tbody>
+    </table>
+</div>
+

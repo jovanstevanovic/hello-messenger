@@ -1,0 +1,118 @@
+﻿@model BrzeBoljeJeftinije.Messenger.UI.Models.GroupModel
+@{
+    string successMessage = Model.Id == null ? "Grupa uspešno kreirana" : "Grupa uspešno ažurirana";
+}
+@using (Ajax.BeginForm("Edit", "Group", new { }, new AjaxOptions
+{
+    AllowCache = false,
+    HttpMethod = "POST",
+    OnBegin = "groupEditBegin",
+    OnFailure = "groupEditFail",
+    OnSuccess = "groupEditSuccess",
+
+}, new { id = "group-edit-form", enctype = "multipart/form-data" }))
+{
+    <input type="text" class="form-control" id="group-edit-name" name="Name" placeholder="Unesite ime grupe" value="@Model.Name" />
+    <input type="file" id="group-edit-upload-picture" name="Picture" style="display:none" accept="image/*" />
+    <i class="fa fa-file-picture-o" style="padding-left:10px" aria-hidden="true" onclick="$('#group-edit-upload-picture').click()"></i><br />
+    <input type="text" class="form-control" id="group-edit-search" placeholder="Unesite ime prijatelja" onkeyup="refreshGroupEdit()" />
+    <ul id="group-edit-list"></ul>
+    <input type="submit" class="form-control" onclick="submitGroupEdit()" value="@(Model.Id==null?"Kreiraj":"Sačuvaj")" />
+    <input type="hidden" name="Members" , value="[]" id="group-edit-members" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+}
+
+<script>
+    var groupEditMembers = [];
+    var activeMembers = {}
+    var oldEditMembers = @Html.Raw(Model.Members);
+    function refreshGroupEdit()
+    {
+        $("#group-edit-list").html("");
+        var searchQuery = $("#group-edit-search").val().toUpperCase();
+        var handledMembers = {}
+        groups.forEach((friend) =>
+        {
+            if (searchQuery.trim() == "") return;
+            if (!friends[friend.otherId] || friend.name.toUpperCase().indexOf(searchQuery) == -1) return;
+            if (activeMembers[friend.otherId]) return;
+            handledMembers[friend.otherId] = true;
+            $("#group-edit-list").append(renderChip("groupMemberClick(" + friend.otherId + ")", null, friend.picture, "fa-plus", friend.name, false));
+        });
+        groupEditMembers.forEach((friend) =>
+        {
+            if (searchQuery.trim() == "") return;
+            if (friend.name.toUpperCase().indexOf(searchQuery) == -1) return;
+            if (activeMembers[friend.id]) return;
+            if (handledMembers[friend.id]) return;
+            $("#group-edit-list").append(renderChip("groupMemberClick(" + friend.id + ")", null, friend.picture, "fa-plus", friend.name, false));
+        });
+        for (var friendId in activeMembers)
+        {
+            friend = activeMembers[friendId];
+            $("#group-edit-list").append(renderChip("groupMemberClick(" + friendId + ")", null, friend.picture, "fa-minus", friend.name, false));
+        }
+    }
+    function groupMemberClick(id)
+    {
+        if (activeMembers[id])
+        {
+            delete activeMembers[id];
+            refreshGroupEdit();
+        }
+        else
+        {
+            var friendObject = null;
+            groups.forEach((friend) =>
+            {
+                if (friend.otherId != id) return;
+                friendObject = friend;
+            });
+            if (friendObject == null)
+            {
+                groupEditMembers.forEach((friend) =>
+                {
+                    if (friend.Id != id) return;
+                    friendObject = friend;
+                });
+            }
+            activeMembers[id] = friendObject;
+            refreshGroupEdit();
+        }
+    }
+    function groupEditBegin(event)
+    {
+        return false;
+    }
+    async function submitGroupEdit()
+    {
+        var members = [];
+        for (var member in activeMembers)
+        {
+            members.push({ Id: member });
+        }
+        $("#group-edit-members").val(JSON.stringify(members));
+        var formData = new FormData($("#group-edit-form")[0]);
+        var response = await asyncAjax("/Group/Edit", formData);
+        if (response.indexOf("FAIL:") != -1)
+        {
+            showAlertBox(response.replace("FAIL:", ""));
+        }
+        else
+        {
+            refreshGroups(false);
+            showMessageBox("@successMessage");
+        }
+    }
+    $(document).ready(() =>
+    {
+        for (var index in oldEditMembers)
+        {
+            var member = oldEditMembers[index];
+            if (member.id == currentUserId) continue;
+            groupEditMembers.push(member);
+            activeMembers[member.id] = member;
+        }
+        refreshGroupEdit();
+    });
+</script>

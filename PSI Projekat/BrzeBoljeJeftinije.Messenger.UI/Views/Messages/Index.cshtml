@@ -1,0 +1,106 @@
+﻿@using BrzeBoljeJeftinije.Messenger.UI.Models;
+@using BrzeBoljeJeftinije.Messenger.UI.Helpers;
+
+@Scripts.Render("~/bundles/poruke")
+<script>
+    var groups = [];
+    var friends = {};
+    var requests = {};
+    var currentGroup = null;
+    var currentUserId = @SessionData.User.Id;
+    var simUser = false;
+</script>
+<script src="~/Scripts/messages.js">
+</script>
+@if(SessionData.User.CertHash.StartsWith("SIM"))
+{
+    <script>
+        simUser = true;
+    </script>
+}
+<style>
+    @@media screen and (max-width: 500px) {
+        .root-div {
+            padding-top: 0px;
+        }
+
+        #nav-menu {
+            display: none
+        }
+
+        #nav-menu-open {
+            display: block;
+        }
+    }
+</style>
+<div class="modal" id="picture-display">
+    <div class="modal-inner" id="picture-display-inner">
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <img class="display-picture" />
+    </div>
+</div>
+<div class="modal" id="friendsearch">
+    <div class="modal-inner">
+        <div id="zahtev-poslat" style="display:none;float:left;font-family:'Segoe UI';padding-left:10px;font-size:12px">Zahtev poslat</div>
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeModal()"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <input type="text" class="form-control" id="friend-search" placeholder="Kucajte ime prijatelja" onkeyup="searchUsers(event)" />
+        <ul id="friend-list"></ul>
+    </div>
+</div>
+<div class="modal" id="groupedit">
+    <div class="modal-inner">
+        <a href="#"><div style="float:right;padding-right:16px;font-family:'Segoe UI'" onclick="closeGroupEdit();"><i class="fa fa-close pull-right" aria-hidden="true"></i></div></a><br />
+        <input type="text" class="form-control" id="groupedit-name" placeholder="Unesite ime grupe" /><i class="fa fa-file-picture-o" style="padding-left:10px" aria-hidden="true" onclick="$('#fileupload').click()"></i><br />
+        <input type="text" class="form-control" id="groupedit-search" placeholder="Kucajte ime prijatelja" onkeyup="refreshGroupedit()" />
+        <ul id="groupedit-list"></ul>
+    </div>
+</div>
+<div id="groups">
+    <div id="group-search-div">
+        <input type="text" class="form-control" id="group-search" placeholder="Pretrazite..." onkeyup="refreshGroups()" />
+    </div>
+    <ul id="group-list"></ul>
+</div>
+<div id="message-content" class="row app-one">
+    <div class="col-sm-8 conversation">
+        <div class="row heading" id="messages-content-heading">
+            <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                <div class="heading-avatar-icon">
+                    <img id="group-picture" src="">
+                </div>
+            </div>
+            <div class="col-sm-8 col-xs-7 heading-name">
+                <span class="heading-name-meta" id="group-name">
+
+                </span>
+                <span class="heading-online">Online</span>
+            </div>
+            <div class="col-sm-1 col-xs-1  heading-dot pull-right" style="font-size:12px" id="group-edit" onclick="editGroup()">
+                <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-1 col-xs-1  heading-dot pull-right" style="font-size:12px" id="group-leave" onclick="leaveGroup()">
+                <i title="Napusti grupu" class="fa fa-close fa-2x  pull-right" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-1 col-xs-1  heading-dot pull-right" style="font-size:12px" id="friend-delete" onclick="deleteFriend()">
+                <i title="Obriši iz prijatelja" class="fa fa-trash fa-2x  pull-right" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="row message" id="conversation">
+        </div>
+
+        <div class="row reply" style="background-color:lightgray" id="message-entry">
+            <div class="col-sm-9 col-xs-9 reply-main">
+                <textarea class="form-control" rows="1" placeholder="Unesite tekst poruke..." id="sent-text" onkeypress="checkIfEnterPress(event)"></textarea>
+            </div>
+            <div class="col-sm-1 col-xs-1 reply-send">
+                <i id="attachment-indicator" class="fa fa-paperclip fa-2x" aria-hidden="true" onclick="attachFile()"></i>
+            </div>
+            <div class="col-sm-1 col-xs-1 reply-send">
+                <i class="fa fa-send fa-2x" aria-hidden="true" onclick="sendMessage()"></i>
+            </div>
+            <input type="file" id="fileupload" style="display:none" onchange="uploadFile()" />
+        </div>
+    </div>
+</div>
+

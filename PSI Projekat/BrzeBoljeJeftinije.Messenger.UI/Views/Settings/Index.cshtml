@@ -1,0 +1,35 @@
+﻿<form id="picture-upload" method="post" action="@Url.Action("MyPicture", "User")" enctype="multipart/form-data">
+    <input type="file" id="fileupload" name="picture" accept="image/*" style="display:none" onchange="uploadFile()" />
+</form>
+<div style="width:100%">
+    <img id="profilepic" style="width:400px;height:400px;border-radius:50%;background-size:contain;margin:auto;display:block" src="@Url.Action("MyPicture", "User")" />"
+</div>
+<div style="width:100%">
+    <div><a href="#" onclick="$('#fileupload').click()"><i class="fa fa-file-picture-o" style="width:100%;text-align:center"><span style="font-family:'Segoe UI';">PROMENI SLIKU</span></i></a></div>
+</div>
+<div style="width:100%">
+    <div><a href="#" onclick="deleteAccount()"><i class="fa fa-trash" style="width:100%;text-align:center"><span style="font-family:'Segoe UI';">OBRIŠI NALOG</span></i></a></div>
+</div>
+<script>
+    function uploadFile() {
+        $("#picture-upload").submit();
+    }
+    function deleteAccount() {
+        openPrompt("Ako potvrdite brisanje, biće obrisan vaš nalog kao i sve poruke koje ste poslali. Da li želite da nastavite sa brisanjem",
+            async (accept) =>
+            {
+                if (accept)
+                {
+                    var response = await asyncAjax("/User/DeleteMe");
+                    if (response == "OK")
+                    {
+                        window.location.href = '/'
+                    }
+                    else
+                    {
+                        showAlertBox(response);
+                    }
+                }
+            });
+    }
+</script>

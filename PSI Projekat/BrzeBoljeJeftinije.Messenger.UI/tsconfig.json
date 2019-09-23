@@ -1,0 +1,25 @@
+﻿{
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowJs": true,
+    "outDir": "out"
+  },
+  "exclude": [
+    "out",
+    "Scripts\\bootstrap-datepicker.js",
+    "Scripts\\bootstrap-datepicker.min.js",
+    "Scripts\\bootstrap.js",
+    "Scripts\\bootstrap.min.js",
+    "Scripts\\jquery.ellipsis.min.js",
+    "Scripts\\jquery.validate-vsdoc.js",
+    "Scripts\\jquery.validate.js",
+    "Scripts\\jquery.validate.unobtrusive.js",
+    "Scripts\\jquery.validate.unobtrusive.min.js",
+    "Scripts\\modernizr-2.6.2.js",
+    "Scripts\\perfect-scrollbar.min.js",
+  ],
+  "compileOnSave": true,
+  "typingOptions": {
+    "enableAutoDiscovery": true
+  }
+}
